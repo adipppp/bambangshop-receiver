@@ -85,5 +85,8 @@ This is the place for you to write reflections:
 ### Mandatory (Subscriber) Reflections
 
 #### Reflection Subscriber-1
+1. Jika kita menggunakan `Mutex<>`, `Vec<Notification>` hanya dapat dibaca maupun dimodifikasi oleh sebuah thread saja dalam satu waktu. Di sisi lain, `RwLock<>` memberikan akses terhadap `Vec<Notification>` kepada banyak thread yang melakukan read dalam satu waktu, tetapi hanya memberikan akses untuk satu thread saja yang melakukan write. Menggunakan `Mutex<>` berpotensi menghambat performa program sebab mutex hanya menyediakan akses kepada satu thread saja dalam satu waktu, baik untuk thread yang melakukan read maupun write.
+
+2. Penggunaan static variable berpotensi menyebabkan beberapa masalah concurrency seperti race condition. Tanpa sinkronisasi, beberapa thread dapat melakukan read/write sebuah static variable dalam satu waktu. Di case ini, kita menggunakan `DashMap` dan `RwLock<>` untuk memastikan modifikasi yang kita lakukan pada static variable yang ada bersifat thread-safe.
 
 #### Reflection Subscriber-2
