@@ -90,3 +90,8 @@ This is the place for you to write reflections:
 2. Penggunaan static variable berpotensi menyebabkan beberapa masalah concurrency seperti race condition. Tanpa sinkronisasi, beberapa thread dapat melakukan read/write sebuah static variable dalam satu waktu. Di case ini, kita menggunakan `DashMap` dan `RwLock<>` untuk memastikan modifikasi yang kita lakukan pada static variable yang ada bersifat thread-safe.
 
 #### Reflection Subscriber-2
+1. Pada src/lib.rs, terdapat static variable `REQWEST_CLIENT` yang merupakan HTTP client yang dipakai sepanjang exercise ini, `APP_CONFIG` yang berfungsi untuk membaca environment variable, custom `Result` type, custom `Error` type yang juga merepresentasikan sebuah response, serta function `compose_error_response` untuk generate custom `Error` response tersebut.
+
+2. Salah satu kelebihan menggunakan Observer pattern adalah scalability yang baik. Hanya dengan sekian banyak code yang sudah ditulis pada repository bambangshop-receiver, kita dapat menambahkan banyak subscriber hanya dengan menjalankan instance baru dari program receiver ini di port maupun host yang berbeda.
+
+3. Maaf, saya baru hanya menggunakan test collection bawaan bambangshop.
